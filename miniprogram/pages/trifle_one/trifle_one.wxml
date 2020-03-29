@@ -1,0 +1,12 @@
+<!--miniprogram/pages/trifle_one/trifle_one.wxml-->
+<view class="body">
+  <view style="flex-direction:row;">
+    <text class="basic_reminder">喵喵的回忆</text>
+    <text class="basic_reminder">编辑</text>
+    <text class="basic_reminder">查看全文</text>
+  </view> 
+  <text class="basic_comment">{{trifle.comment_from_miaomiao}}</text>
+  <text class="basic_comment">{{trifle.comment_from_tuantuan}}</text>
+  <!--<textarea value="{{trifle.comment_from_miaomiao}}" data-person="mm" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>
+  <textarea value="{{trifle.comment_from_tuantuan}}" data-person="tt" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>-->
+</view>

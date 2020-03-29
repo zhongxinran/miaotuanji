@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/trifle/trifle",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/trifle_one/trifle_one"
+  ],
+  "window": {
+    "backgroundColor": "#ffaaa5",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffaaa5",
+    "navigationBarTitleText": "喵团记",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

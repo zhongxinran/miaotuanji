@@ -1,0 +1,14 @@
+/* miniprogram/pages/trifle.wxss */
+page{
+  background-color:#ffaaa560;
+}
+.body{
+  margin: 12px;
+}
+.basic_trifle{
+  font-size: 17px;
+  color: #666666;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+}

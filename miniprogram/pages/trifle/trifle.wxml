@@ -1,0 +1,15 @@
+<!--miniprogram/pages/trifle.wxml-->
+<view class="body">
+  <text>100件小事</text>
+  <scroll-view scroll-y="true">
+    <view wx:for="{{trifles}}" wx:key="idx">
+      <navigator style="margin-top:16px" url="../trifle_one/trifle_one?id={{item._id}}">
+        <view class="basic_trifle" style="flex-direction:row;">
+          <icon wx:if="{{item.status}}" type="success" size="24" color="#ff9d9d"/>
+          <icon wx:if="{{!item.status}}" type="waiting" size="24" color="#a6b1e1"/>
+          <text style="margin-left:6px">{{item.description}}</text>
+        </view> 
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
