@@ -11,7 +11,42 @@ page{
   color: #666666;
   display: flex;
   height: 100px;
-  margin: 1.2em 0em 1.2em 0em;
+  margin: 6px 0px 12px 0px;
   padding: 12px 6px 12px 6px;
   line-height: 1.5em;
+}
+.basic_reminder{
+  font-size: 17px;
+  color: #666666;
+  padding-left: 6px;
+}
+.recall{
+  font-size: 17px;
+  color: #666666;
+  margin: 48px 0px 12px 0px; 
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  line-height: 1.8em;
+}
+.add_image{
+  font-size: 12px;
+  color: #576b95;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 0px 0px 36px 0px; 
+}
+.basic_image{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px 12px 0px; 
+  height: 150px;
+  width: 100px;
+}
+.basic_image image{
+  height: 15px;
+  width: 10px;
 }

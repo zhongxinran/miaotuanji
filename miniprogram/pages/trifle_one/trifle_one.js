@@ -6,14 +6,26 @@ Page({
    */
   data: {
     _id: '',
-    trifle: {},
+    trifle: {
+      '_id': '5mHprV8bLlrZH363lQD4djaMIEe3SQfviTZHmKFh1xUcjg2u',
+      'comment_miaomiao': '这里是喵喵的评论',
+      'comment_tuantuan': '这里是团团的评论',
+      'date': '2020/3/29',
+      'lastUpdateTime_miaomiao': '2020/3/20 17:58:00',
+      'lastUpdateTime_tuantuan': '2020/3/20 17:58:00',
+      'description': '一起去电影院看一场电影',
+      'index': 1,
+      'plan_date': '',
+      'status': 1,
+      'imagePath': ["cloud://miaotuanji-ojb42.6d69-miaotuanji-ojb42-1301691630/一起去电影院看一场电影0.jpg"],
+    },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const db = wx.cloud.database()
+  onLoad: function () {
+    /* const db = wx.cloud.database()
     this.setData({
       _id: options.id
     })
@@ -34,7 +46,7 @@ Page({
         })
         console.error('[数据库] [查询记录] 失败：', err)
       }
-    })
+    })*/
   },
 
   /**
@@ -86,7 +98,7 @@ Page({
 
   },
   
-  addComment: function(e){
+  /* addComment: function(e){
     if (e.target.dataset.person == "mm") {
       this.setData({
         'trifle.comment_from_miaomiao': e.detail.value
@@ -98,5 +110,60 @@ Page({
     }
     console.log("=== add comment from miaomiao ===")
     console.log(this.data.trifle)
+  },*/
+
+  addImage: function(){
+    var that = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+
+        wx.showLoading({
+          title: '上传中',
+        })
+
+        const filePath = res.tempFilePaths[0]
+        console.log('here', res.tempFilePaths)
+        
+        // 上传图片
+        const cloudPath = that.data.trifle.description + that.data.trifle.imagePath.length + '.jpg'
+        console.log('here1', cloudPath)
+        wx.cloud.uploadFile({
+          cloudPath,
+          filePath,
+          success: res => {
+            console.log('[上传文件] 成功：', res)
+
+            that.setData({
+              'trifle.imagePath':[res.fileID]
+            })
+
+            /*app.globalData.fileID = res.fileID
+            app.globalData.cloudPath = cloudPath
+            app.globalData.imagePath = filePath
+            
+            wx.navigateTo({
+              url: '../storageConsole/storageConsole'
+            })*/
+          },
+          fail: e => {
+            console.error('[上传文件] 失败：', e)
+            wx.showToast({
+              icon: 'none',
+              title: '上传失败',
+            })
+          },
+          complete: () => {
+            wx.hideLoading()
+          }
+        })
+
+      },
+      fail: e => {
+        console.error(e)
+      }
+    })
   }
 })

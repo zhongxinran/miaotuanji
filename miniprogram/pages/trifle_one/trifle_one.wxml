@@ -1,12 +1,24 @@
 <!--miniprogram/pages/trifle_one/trifle_one.wxml-->
 <view class="body">
+  
+  <text class="basic_reminder">{{trifle.description}}\n</text>
+  <text class="recall">2020年3月5日，\n我们一起去电影院看一场电影，\n这一天，\n是我们在一起的第976天。\n</text>
+
+  <view class="display:flex; justify-content:center; align-items:center"><image  src="{{trifle.imagePath[0]}}" mode="aspectFit" wx:if="{{trifle.imagePath.length}}"></image></view>
+  <text class="add_image" bindtap="addImage">上传更多图片回忆</text>
+
   <view style="flex-direction:row;">
-    <text class="basic_reminder">喵喵的回忆</text>
-    <text class="basic_reminder">编辑</text>
-    <text class="basic_reminder">查看全文</text>
+    <text class="basic_reminder" style="display: inline; justify-content: left;">喵喵的回忆</text>
+    <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_miaomiao}}</text>
+    <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
   </view> 
-  <text class="basic_comment">{{trifle.comment_from_miaomiao}}</text>
-  <text class="basic_comment">{{trifle.comment_from_tuantuan}}</text>
+  <text class="basic_comment">{{trifle.comment_miaomiao}}</text>
+  <view style="flex-direction:row;">
+    <text class="basic_reminder" style="display: inline; justify-content: left;">团团的回忆</text>
+    <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_tuantuan}}</text>
+    <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
+  </view> 
+  <text class="basic_comment">{{trifle.comment_tuantuan}}</text>
   <!--<textarea value="{{trifle.comment_from_miaomiao}}" data-person="mm" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>
   <textarea value="{{trifle.comment_from_tuantuan}}" data-person="tt" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>-->
 </view>
