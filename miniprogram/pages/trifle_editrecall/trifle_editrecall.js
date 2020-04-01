@@ -1,4 +1,4 @@
-// miniprogram/pages/trifle_one/trifle_one.js
+// miniprogram/trifle_editrecall/trifle_editrecall.js
 Page({
 
   /**
@@ -6,6 +6,7 @@ Page({
    */
   data: {
     _id: '',
+    person: '',
     trifle: {
       '_id': '5mHprV8bLlrZH363lQD4djaMIEe3SQfviTZHmKFh1xUcjg2u',
       'comment_miaomiao': '这里是喵喵的评论',
@@ -28,13 +29,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    /* const db = wx.cloud.database()
+  onLoad: function (options) {
+    const db = wx.cloud.database()
     this.setData({
-      _id: options.id
+      _id: options.id,
+      person: options.person
     })
     console.log(options)
-    db.collection("trifles").where({
+    /* db.collection("trifles").where({
       _id: options.id
     }).get({
       success: res => {
@@ -102,56 +104,20 @@ Page({
 
   },
 
-  addImage: function(){
-    var that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        console.log('here', res.tempFilePaths)
-        
-        // 上传图片
-        const cloudPath = that.data.trifle.description + that.data.trifle.imagePath.length + '.jpg'
-        console.log('here1', cloudPath)
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            that.setData({
-              'trifle.imagePath':[res.fileID]
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
+  addComment: function(e){
+    if (e.target.dataset.person == "mm") {
+      this.setData({
+        'trifle.comment_from_miaomiao': e.detail.value
+      })
+    } else if (e.target.dataset.person == "tt") {
+      this.setData({
+        'trifle.comment_from_tuantuan': e.detail.value
+      })
+    }
+    console.log("=== add comment from " + e.target.dataset.person + " ===")
+    console.log(this.data.trifle)
   },
-  img: function (e) {
-    wx.previewImage({
-      current: e.currentTarget.dataset.url, // 当前显示图片的http链接
-      urls: this.data.trifle.imagePath      // 需要预览的图片http链接列表
-    })
-  }
+  commitComment: function(){
+
+  },
 })

@@ -23,7 +23,7 @@ page{
 .recall{
   font-size: 17px;
   color: #666666;
-  margin: 48px 0px 12px 0px; 
+  margin: 0px 0px 12px 0px; 
   display: flex;
   text-align: center;
   justify-content: center;
@@ -37,16 +37,45 @@ page{
   justify-content: center;
   margin: 0px 0px 36px 0px; 
 }
-.basic_image{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 0px 0px 12px 0px; 
-  height: 150px;
-  width: 100px;
+.image-box-1 {
+  width: 400rpx;
+  padding: 20rpx 0;
+  height: 300rpx;
+  white-space: nowrap;
+  margin: 3% auto;
+  margin-top: -12px;
 }
-.basic_image image{
-  height: 15px;
-  width: 10px;
+.image-box-1 image{
+  width: 400rpx;
+  height: 300rpx;
+  margin-right: 20rpx;
+  border-radius: 5px;
+}
+.image-box-2 {
+  width: 500rpx;
+  padding: 20rpx 0;
+  height: 180rpx;
+  white-space: nowrap;
+  margin: 3% auto;
+  margin-top: -12px;
+}
+.image-box-2 image{
+  width: 240rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+  border-radius: 5px;
+}
+.image-box-3 {
+  width: 600rpx;
+  padding: 20rpx 0;
+  height: 180rpx;
+  white-space: nowrap;
+  margin: 3% auto;
+  margin-top: -12px;
+}
+.image-box-3 image{
+  width: 240rpx;
+  height: 180rpx;
+  margin-right: 20rpx;
+  border-radius: 5px;
 }

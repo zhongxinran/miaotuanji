@@ -1,0 +1,23 @@
+/* miniprogram/trifle_editrecall/trifle_editrecall.wxss */
+page{
+  background-color:#ffaaa560;
+}
+.body{
+  margin: 12px;
+}
+.basic_comment{
+  height: 950rpx;
+  background-color: #ffaaa580;
+  min-height: 100px;
+  font-size: 14px;
+  color: #666666;
+  display: flex;
+  width: 97%;
+  padding: 12px 6px 12px 6px;
+  line-height: 2em;
+}
+.commit_button{
+  background-color: #ffaaa5;
+  color: white;
+  margin:20px 0px 20px 0px;
+}

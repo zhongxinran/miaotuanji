@@ -1,0 +1,9 @@
+<!--miniprogram/trifle_editrecall/trifle_editrecall.wxml-->
+<view class="body">
+  <form bindsubmit="commitComment">
+    <textarea wx:if="{{person == 'mm'}}" value="{{trifle.comment_miaomiao}}" data-person="mm" name="comment" class="basic_comment" maxlength="-1"></textarea>
+    <textarea wx:if="{{person == 'tt'}}" value="{{trifle.comment_tuantuan}}" data-person="tt" name="comment" class="basic_comment" auto-height maxlength="-1"></textarea>
+
+    <button class="commit_button" form-type="submit">提交</button>
+  </form>
+</view>
