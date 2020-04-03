@@ -1,6 +1,6 @@
 /* miniprogram/pages/trifle.wxss */
 page{
-  background-color:#ffaaa560;
+  background-color:rgba(255,170,165,0.4);
 }
 .body{
   margin: 12px;

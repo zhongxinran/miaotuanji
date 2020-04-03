@@ -7,7 +7,7 @@ Page({
   data: {
     _id: '',
     person: '',
-    trifle: {
+    /*trifle: {
       '_id': '5mHprV8bLlrZH363lQD4djaMIEe3SQfviTZHmKFh1xUcjg2u',
       'comment_miaomiao': '这里是喵喵的评论',
       'comment_tuantuan': '这里是团团的评论',
@@ -23,7 +23,7 @@ Page({
         "cloud://miaotuanji-ojb42.6d69-miaotuanji-ojb42-1301691630/my-image.jpg",
         "cloud://miaotuanji-ojb42.6d69-miaotuanji-ojb42-1301691630/一起去电影院看一场电影0.jpg",
       ],
-    },
+    },*/
   },
 
   /**
@@ -36,7 +36,7 @@ Page({
       person: options.person
     })
     console.log(options)
-    /* db.collection("trifles").where({
+    db.collection("trifles").where({
       _id: options.id
     }).get({
       success: res => {
@@ -52,7 +52,30 @@ Page({
         })
         console.error('[数据库] [查询记录] 失败：', err)
       }
-    })*/
+    })
+
+    Date.prototype.format = function(format) {
+      var date = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S+": this.getMilliseconds()
+      };
+      if (/(y+)/i.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+      }
+      for (var k in date) { 
+        if (new RegExp("(" + k + ")").test(format)) {
+          format = format.replace(RegExp.$1, RegExp.$1.length == 1
+            ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+        }
+      }
+      return format;
+    }
+
   },
 
   /**
@@ -104,20 +127,47 @@ Page({
 
   },
 
-  addComment: function(e){
-    if (e.target.dataset.person == "mm") {
+  commitComment: function(e){
+    var time = new Date()
+    const db = wx.cloud.database()
+    if (this.data.person = "mm") {
       this.setData({
-        'trifle.comment_from_miaomiao': e.detail.value
+        'trifle.comment_miaomiao': e.detail.value.comment,
+        'trifle.lastUpdateTime_miaomiao': time.format("yyyy-MM-dd hh:mm:ss"),
       })
-    } else if (e.target.dataset.person == "tt") {
+      db.collection('trifles').doc(this.data._id).update({
+        data: {
+          comment_miaomiao: e.detail.value.comment,
+          lastUpdateTime_miaomiao: time.format("yyyy-MM-dd hh:mm:ss"),
+        },
+        success: res => {
+          console.log('[数据库] [更新记录] 成功')
+        },
+        fail: err => {
+          icon: 'none',
+          console.error('[数据库] [更新记录] 失败：', err)
+        }
+      })
+    } else if (ethis.data.person = "tt") {
       this.setData({
-        'trifle.comment_from_tuantuan': e.detail.value
+        'trifle.comment_tuantuan': e.detail.value.comment,
+        'trifle.lastUpdateTime_tuantuan': time.format("yyyy-MM-dd hh:mm:ss"),
+      })
+      db.collection('trifles').doc(this.data._id).update({
+        data: {
+          comment_tuantuan: e.detail.value.comment,
+          lastUpdateTime_tuantuan: time.format("yyyy-MM-dd hh:mm:ss"),
+        },
+        success: res => {
+          console.log('[数据库] [更新记录] 成功')
+        },
+        fail: err => {
+          icon: 'none',
+          console.error('[数据库] [更新记录] 失败：', err)
+        }
       })
     }
-    console.log("=== add comment from " + e.target.dataset.person + " ===")
     console.log(this.data.trifle)
-  },
-  commitComment: function(){
 
   },
 })

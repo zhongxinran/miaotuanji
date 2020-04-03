@@ -1,44 +1,51 @@
 <!--miniprogram/pages/trifle_one/trifle_one.wxml-->
 <view class="body">
   
+  <view wx:if="{{trifle.status == 0}}">
+    <text class="recall">我们{{trifle.description}}了嘛</text>
+    <button class="commit_button" bindtap="changeStatus">是的呢！</button>
+  </view>
+
   <!--<text class="basic_reminder">{{trifle.description}}\n</text>-->
-  <text class="recall">2020年3月5日\n我们一起去电影院看一场电影\n这一天\n是我们在一起的第976天\n</text>
+  <view wx:if="{{trifle.status != 0}}">
+    <picker mode="date" value="{{trifle.data}}" bindchange="bindDateChange">
+      <text class="recall" style="margin-bottom:0px">{{showDate}}</text>
+    </picker>
+    <text class="recall">我们{{trifle.description}}\n这一天\n是我们在一起的\n第 {{timeDifferenceDay}} 天\n第 {{timeDifferenceHour}} 小时\n第 {{timeDifferenceMinute}} 分钟\n第 {{timeDifferenceSecond}} 秒\n</text>
 
-  <scroll-view class='image-box-1' scroll-x wx:if="{{trifle.imagePath.length == 1}}">
-    <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='img' mode="aspectFill" data-url='{{item}}'></image>
-  </scroll-view>
+    <scroll-view class='image-box-1' scroll-x wx:if="{{trifle.imagePath.length == 1}}">
+      <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='imgPreview' mode="aspectFill" data-url='{{item}}'></image>
+    </scroll-view>
 
-  <scroll-view class='image-box-2' scroll-x wx:if="{{trifle.imagePath.length == 2}}">
-    <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='img' mode="aspectFill" data-url='{{item}}'></image>
-  </scroll-view>
+    <scroll-view class='image-box-2' scroll-x wx:if="{{trifle.imagePath.length == 2}}">
+      <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='imgPreview' mode="aspectFill" data-url='{{item}}'></image>
+    </scroll-view>
 
-  <scroll-view class='image-box-3' scroll-x wx:if="{{trifle.imagePath.length > 2}}">
-    <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='img' mode="aspectFill" data-url='{{item}}'></image>
-  </scroll-view>
+    <scroll-view class='image-box-3' scroll-x wx:if="{{trifle.imagePath.length > 2}}">
+      <image wx:for="{{trifle.imagePath}}" wx:key="idx" src='{{item}}' bindtap='imgPreview' mode="aspectFill" data-url='{{item}}'></image>
+    </scroll-view>
 
-  <!--<scroll-view scroll-x="true">
-    <view wx:for="{{trifle.imagePath}}" wx:for-index="idx" style="display:flex; justify-content:center;">
-      <image style="width:90%" src="{{item}}" mode="aspectFit"></image>
-    </view>
-  </scroll-view>-->
-  <text class="add_image" bindtap="addImage">上传更多图片回忆</text>
+    <text class="add_image" bindtap="addImage">上传更多图片回忆</text>
 
-  <view style="flex-direction:row;">
-    <text class="basic_reminder" style="display: inline; justify-content: left;">喵喵的回忆</text>
-    <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_miaomiao}}</text>
-    <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
-  </view> 
-  <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=mm">
-    <text class="basic_comment">{{trifle.comment_miaomiao}}</text>
-  </navigator>
-  <view style="flex-direction:row;">
-    <text class="basic_reminder" style="display: inline; justify-content: left;">团团的回忆</text>
-    <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_tuantuan}}</text>
-    <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
-  </view> 
-  <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=tt">
-    <text class="basic_comment">{{trifle.comment_tuantuan}}</text>
-  </navigator>
-  <!--<textarea value="{{trifle.comment_from_miaomiao}}" data-person="mm" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>
-  <textarea value="{{trifle.comment_from_tuantuan}}" data-person="tt" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>-->
+    <view style="flex-direction:row;">
+      <text class="basic_reminder" style="display: inline; justify-content: left;">喵喵的回忆</text>
+      <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_miaomiao}}</text>
+      <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
+    </view> 
+    <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=mm">
+      <text class="basic_comment" wx:if="{{trifle.comment_miaomiao}}">{{trifle.comment_miaomiao}}</text>
+      <text class="basic_comment" wx:if="{{trifle.comment_miaomiao.length == 0}}">快来添加回忆吧…</text>
+    </navigator>
+    <view style="flex-direction:row;">
+      <text class="basic_reminder" style="display: inline; justify-content: left;">团团的回忆</text>
+      <text class="basic_reminder" style="display: inline; justify-content: left;font-size:12px">{{trifle.lastUpdateTime_tuantuan}}</text>
+      <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
+    </view> 
+    <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=tt">
+      <text class="basic_comment" wx:if="{{trifle.comment_tuantuan}}">{{trifle.comment_tuantuan}}</text>
+      <text class="basic_comment" wx:if="{{trifle.comment_tuantuan.length == 0}}">快来添加回忆吧…</text>
+    </navigator>
+    <!--<textarea value="{{trifle.comment_from_miaomiao}}" data-person="mm" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>
+    <textarea value="{{trifle.comment_from_tuantuan}}" data-person="tt" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>-->
+  </view>
 </view>

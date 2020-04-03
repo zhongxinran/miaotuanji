@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/trifle/trifle",
     "pages/trifle_one/trifle_one",
     "pages/trifle_editrecall/trifle_editrecall",
-    "pages/trifle/trifle",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
