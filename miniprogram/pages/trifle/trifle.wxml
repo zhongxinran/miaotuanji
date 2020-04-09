@@ -1,6 +1,16 @@
-<!--miniprogram/pages/trifle.wxml-->
-<view class="body">
-  <text>100件小事</text>
+<view class='topbar'>
+  <view class='status' style="height:{{statusHeight}}px"></view>
+  <view class='navbar' style="height:{{navHeight}}px">
+    <view class='navbar_back' bindtap='backClick'>
+      <image src='/images/back-black.png'></image>
+    </view>
+    <view class='navbar_title' style="height:{{navHeight}}px">
+      <text>喵团记</text>
+    </view>
+  </view>
+</view>
+<view class="body" style="margin-top:{{bodyTopHeight}}px">
+  <text class="header">想和你一起，做完这所有事…</text>
   <scroll-view scroll-y="true">
     <view wx:for="{{trifles}}" wx:key="idx">
       <navigator style="margin-top:16px" url="../trifle_one/trifle_one?id={{item._id}}">

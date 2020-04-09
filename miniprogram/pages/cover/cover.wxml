@@ -1,0 +1,18 @@
+<!--miniprogram/pages/cover/cover.wxml-->
+<view class='topbar'>
+  <view class='status' style="height:{{statusHeight}}px"></view>
+  <view class='navbar' style="height:{{navHeight}}px">
+    <view class='navbar_title' style="height:{{navHeight}}px">
+      <text>喵团记</text>
+    </view>
+  </view>
+</view>
+<view class="body" style="margin-top:{{bodyTopHeight}}px">
+  <text class="header">{{cover[0]}}</text>
+  <text class="reference">{{cover[1]}}</text>
+  <text class="header">{{cover[2]}}</text>
+  <navigator url="../trifle/trifle">
+    <button class="commit_button">开启回忆之旅！</button>
+  </navigator>
+</view>
+

@@ -1,4 +1,6 @@
 // miniprogram/trifle_editrecall/trifle_editrecall.js
+
+const app = getApp()
 Page({
 
   /**
@@ -7,6 +9,11 @@ Page({
   data: {
     _id: '',
     person: '',
+    isShowBackToast: true,
+    statusHeight: app.globalData.statusHeight,
+    navHeight: app.globalData.navHeight,
+    bodyTopHeight: app.globalData.bodyTopHeight,
+    trifle:{}
     /*trifle: {
       '_id': '5mHprV8bLlrZH363lQD4djaMIEe3SQfviTZHmKFh1xUcjg2u',
       'comment_miaomiao': '这里是喵喵的评论',
@@ -30,6 +37,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+    console.log(options)
     const db = wx.cloud.database()
     this.setData({
       _id: options.id,
@@ -37,7 +46,7 @@ Page({
     })
     console.log(options)
     db.collection("trifles").where({
-      _id: options.id
+      _id: this.data._id
     }).get({
       success: res => {
         this.setData({
@@ -103,7 +112,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**
@@ -126,11 +135,33 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  backClick: function(){
+    if (this.data.isShowBackToast){
+      wx.showModal({
+        title: '提示',
+        content: '是否留在当前页面提交修改？',
+        success: function(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+            wx.navigateBack()
+          }
+        }
+      })
+    } else {
+      wx.navigateBack()
+    }
+  },
   commitComment: function(e){
+    this.setData({
+      'isShowBackToast': false
+    })
     var time = new Date()
     const db = wx.cloud.database()
-    if (this.data.person = "mm") {
+    console.log(this.data.person)
+    if (this.data.person == "mm") {
+      console.log("here mm")
       this.setData({
         'trifle.comment_miaomiao': e.detail.value.comment,
         'trifle.lastUpdateTime_miaomiao': time.format("yyyy-MM-dd hh:mm:ss"),
@@ -148,7 +179,8 @@ Page({
           console.error('[数据库] [更新记录] 失败：', err)
         }
       })
-    } else if (ethis.data.person = "tt") {
+    } else if (this.data.person == "tt") {
+      console.log("here tt")
       this.setData({
         'trifle.comment_tuantuan': e.detail.value.comment,
         'trifle.lastUpdateTime_tuantuan': time.format("yyyy-MM-dd hh:mm:ss"),
@@ -168,6 +200,5 @@ Page({
       })
     }
     console.log(this.data.trifle)
-
   },
 })

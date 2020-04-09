@@ -1,18 +1,22 @@
 // miniprogram/pages/trifle_one/trifle_one.js
-
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    _id: 'OVGuH5XPWQw7hfGvH0tQ9NIM9wv6OgGI2TEGG1YUC0qkC6Zv',
+    _id: '',
     showDate: '',
     startTime: '2017/07/14 03:00:00',
     timeDifferenceDay: '',
     timeDifferenceHour: '',
     timeDifferenceMinute: '',
     timeDifferenceSecond: '',
+    statusHeight: app.globalData.statusHeight,
+    navHeight: app.globalData.navHeight,
+    bodyTopHeight: app.globalData.bodyTopHeight,
+    trifle: {}
     /*trifle: {
       '_id': 'OVGuH5XPWQw7hfGvH0tQ9NIM9wv6OgGI2TEGG1YUC0qkC6Zv',
       'comment_miaomiao': '这里是喵喵的评论',
@@ -36,29 +40,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const db = wx.cloud.database()
-    this.setData({
-      _id: options.id
-    })
-    console.log(options)
-    db.collection("trifles").where({
-      _id: options.id
-    }).get({
-      success: res => {
-        this.setData({
-          trifle: res.data[0]
-        })
-        console.log('[数据库] [查询记录] 成功: ', this.data.trifle)
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '查询记录失败'
-        })
-        console.error('[数据库] [查询记录] 失败：', err)
-      }
-    })
-
     Date.prototype.format = function(format) {
       var date = {
         "M+": this.getMonth() + 1,
@@ -82,19 +63,9 @@ Page({
     }
 
     this.setData({
+      _id: options.id,
       startTime: new Date(this.data.startTime)
     })
-    if (this.data.trifle.status == 1) {
-      var date = new Date(this.data.trifle.date)
-      var timeDifference = date - this.data.startTime
-      this.setData({
-        'showDate': date.format("yyyy年MM月dd日")
-        'timeDifferenceDay': Math.floor(timeDifference/(24*3600*1000)),
-        'timeDifferenceHour': Math.floor(timeDifference/(3600*1000)),
-        'timeDifferenceMinute': Math.floor(timeDifference/(60*1000)),
-        'timeDifferenceSecond': Math.floor(timeDifference/1000),
-      })
-    }
   },
 
   /**
@@ -108,7 +79,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const db = wx.cloud.database()
+    db.collection("trifles").where({
+      _id: this.data._id
+    }).get({
+      success: res => {
+        this.setData({
+          trifle: res.data[0]
+        })
+        console.log('[数据库] [查询记录] 成功: ', this.data.trifle)
+        if (this.data.trifle.status == 1) {
+          var date = new Date(this.data.trifle.date)
+          var timeDifference = date - this.data.startTime
+          this.setData({
+            'showDate': date.format("yyyy年MM月dd日"),
+            'timeDifferenceDay': Math.floor(timeDifference/(24*3600*1000)),
+            'timeDifferenceHour': Math.floor(timeDifference/(3600*1000)),
+            'timeDifferenceMinute': Math.floor(timeDifference/(60*1000)),
+            'timeDifferenceSecond': Math.floor(timeDifference/1000),
+          })
+        }
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
   },
 
   /**
@@ -263,5 +262,8 @@ Page({
         console.error('[数据库] [更新记录] 失败：', err)
       }
     })
+  },
+  backClick(){
+    wx.navigateBack()
   }
 })

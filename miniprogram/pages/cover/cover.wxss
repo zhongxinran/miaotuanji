@@ -1,0 +1,30 @@
+/* miniprogram/pages/cover/cover.wxss */
+page{
+  background-color:rgba(255,170,165,0.4);
+}
+.body{
+  margin: 12px;
+}
+.header{
+  font-size: 17px;
+  color: #666666;
+  margin: 12px 12px 12px 12px; 
+  display: flex;
+  line-height: 1.8em;
+}
+.reference{
+  border-color: rgba(0, 0, 0, 0);
+  border-left-color: rgba(140,140,140,1);
+  border-style: dashed;
+  font-size: 17px;
+  color: rgba(140,140,140,1);
+  margin: 12px 12px 12px 12px; 
+  display: flex;
+  line-height: 1.8em;
+  padding-left: 12px;
+}
+.commit_button{
+  background-color: rgba(255,170,165,1);
+  color: white;
+  margin:20px 0px 20px 0px;
+}

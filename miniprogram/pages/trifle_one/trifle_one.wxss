@@ -6,13 +6,13 @@ page{
   margin: 12px;
 }
 .basic_comment{
-  background: rgba(255,170,165,0.35);
   font-size: 14px;
+  height: 100px;
+  background: rgba(255,170,165,0.35);
   color: #666666;
   display: flex;
-  height: 100px;
   margin: 6px 0px 12px 0px;
-  padding: 12px 6px 12px 6px;
+  padding: 6px 6px 6px 6px;
   line-height: 1.5em;
 }
 .basic_reminder{

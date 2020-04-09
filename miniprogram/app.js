@@ -1,5 +1,11 @@
 //app.js
 App({
+  globalData: {
+    statusHeight: '30',
+    navHeight: '44',
+    bodyTopHeight: '80',
+  },
+
   onLaunch: function () {
     
     if (!wx.cloud) {
@@ -15,6 +21,15 @@ App({
       })
     }
 
-    this.globalData = {}
+    var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.model)
+        if (res.model == 'iPhone X'){
+          that.globalData.statusHeight = '44'
+          that.globalData.bodyTopHeight = '96'
+        }
+      }
+    })
   }
 })

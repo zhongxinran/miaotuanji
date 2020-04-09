@@ -154,3 +154,60 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+.topbar {
+  font-size: 17px;
+  font-style: "black";
+  background-color: #ffaaa5;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.status {
+  width: 100%;
+}
+.navbar {
+  font-size: 17px;
+  font-style: "black";
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.navbar_back {
+  padding: 0 32rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar_back image {
+  width: 24rpx;
+  height: 39rpx;
+}
+
+.navbar_title {
+  position: absolute;
+  font-size: 17px;
+  font-style: "black";
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+.navbar_title view {
+  width: 40%;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 38rpx;
+}

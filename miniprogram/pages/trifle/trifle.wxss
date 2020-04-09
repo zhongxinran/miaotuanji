@@ -12,3 +12,10 @@ page{
   display: flex;
   align-items: center;
 }
+.header{
+  font-size: 17px;
+  color: #666666;
+  margin: 0px 0px 0px 0px; 
+  display: flex;
+  line-height: 1.8em;
+}

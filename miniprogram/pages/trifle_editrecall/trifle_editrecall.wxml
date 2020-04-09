@@ -1,9 +1,22 @@
 <!--miniprogram/trifle_editrecall/trifle_editrecall.wxml-->
-<view class="body">
+
+<view class='topbar'>
+  <view class='status' style="height:{{statusHeight}}px"></view>
+  <view class='navbar' style="height:{{navHeight}}px">
+    <view class='navbar_back' bindtap='backClick'>
+      <image src='/images/back-black.png'></image>
+    </view>
+    <view class='navbar_title' style="height:{{navHeight}}px">
+      <text>喵团记</text>
+    </view>
+  </view>
+</view>
+<view class="body" style="margin-top:{{bodyTopHeight}}px">
   <form bindsubmit="commitComment">
     <textarea wx:if="{{person == 'mm'}}" value="{{trifle.comment_miaomiao}}" name="comment" class="basic_comment" maxlength="-1"></textarea>
     <textarea wx:if="{{person == 'tt'}}" value="{{trifle.comment_tuantuan}}" name="comment" class="basic_comment" maxlength="-1"></textarea>
-
-    <button class="commit_button" form-type="submit">提交</button>
+    <navigator style="margin-top:16px" url="../trifle_one/trifle_one?id={{trifle._id}}">
+      <button class="commit_button" form-type="submit">提交</button>
+    </navigator>
   </form>
 </view>

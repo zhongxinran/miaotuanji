@@ -1,9 +1,21 @@
 <!--miniprogram/pages/trifle_one/trifle_one.wxml-->
-<view class="body">
+<view class='topbar'>
+  <view class='status' style="height:{{statusHeight}}px"></view>
+  <view class='navbar' style="height:{{navHeight}}px">
+    <view class='navbar_back' bindtap='backClick'>
+      <image src='/images/back-black.png'></image>
+    </view>
+    <view class='navbar_title' style="height:{{navHeight}}px">
+      <text>喵团记</text>
+    </view>
+  </view>
+</view>
+<view class="body" style="margin-top:{{bodyTopHeight}}px">
   
   <view wx:if="{{trifle.status == 0}}">
     <text class="recall">我们{{trifle.description}}了嘛</text>
     <button class="commit_button" bindtap="changeStatus">是的呢！</button>
+    <button class="commit_button" bindtap="backClick">还没有～</button>
   </view>
 
   <!--<text class="basic_reminder">{{trifle.description}}\n</text>-->
@@ -33,8 +45,12 @@
       <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
     </view> 
     <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=mm">
-      <text class="basic_comment" wx:if="{{trifle.comment_miaomiao}}">{{trifle.comment_miaomiao}}</text>
-      <text class="basic_comment" wx:if="{{trifle.comment_miaomiao.length == 0}}">快来添加回忆吧…</text>
+      <scroll-view scroll-y="true" class="basic_comment" wx:if="{{trifle.comment_miaomiao}}">
+        <text>{{trifle.comment_miaomiao}}</text>
+      </scroll-view>
+      <scroll-view scroll-y="true" class="basic_comment" wx:if="{{trifle.comment_miaomiao.length == 0}}">
+        <text>快来添加回忆吧…</text>
+      </scroll-view>
     </navigator>
     <view style="flex-direction:row;">
       <text class="basic_reminder" style="display: inline; justify-content: left;">团团的回忆</text>
@@ -42,8 +58,12 @@
       <!--<text class="basic_reminder" style="display: inline; float: right;">查看全文</text>-->
     </view> 
     <navigator url="../trifle_editrecall/trifle_editrecall?id={{trifle._id}}&person=tt">
-      <text class="basic_comment" wx:if="{{trifle.comment_tuantuan}}">{{trifle.comment_tuantuan}}</text>
-      <text class="basic_comment" wx:if="{{trifle.comment_tuantuan.length == 0}}">快来添加回忆吧…</text>
+      <scroll-view scroll-y="true" class="basic_comment" wx:if="{{trifle.comment_tuantuan}}">
+        <text>{{trifle.comment_tuantuan}}</text>
+      </scroll-view>
+      <scroll-view scroll-y="true" class="basic_comment" wx:if="{{trifle.comment_tuantuan.length == 0}}">
+        <text>快来添加回忆吧…</text>
+      </scroll-view>
     </navigator>
     <!--<textarea value="{{trifle.comment_from_miaomiao}}" data-person="mm" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>
     <textarea value="{{trifle.comment_from_tuantuan}}" data-person="tt" bindblur="addComment" class="basic_comment" maxlength="-1"></textarea>-->

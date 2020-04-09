@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cover/cover",
     "pages/trifle/trifle",
     "pages/trifle_one/trifle_one",
     "pages/trifle_editrecall/trifle_editrecall",
@@ -15,11 +16,13 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "components/navigation-bar/navigation-bar"
   ],
   "window": {
     "backgroundColor": "#ffaaa5",
     "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#ffaaa5",
     "navigationBarTitleText": "喵团记",
     "navigationBarTextStyle": "black"

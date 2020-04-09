@@ -7,7 +7,6 @@ page{
 }
 .basic_comment{
   height: 1000rpx;
-  background: rgba(255,170,165,0.2);
   height: 1100rpx;
   font-size: 14px;
   color: #666666;
